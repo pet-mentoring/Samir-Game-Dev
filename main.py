@@ -2,36 +2,53 @@
 
 import pygame
 
-window_size = [1280, 720]
-fps = 30
+# create a window object
+DISPLAY = [1280, 720]
+BACKGROUND = [255, 255, 255]
+FPS = 60
 
-# you can change this to change the color
-color = [255, 255, 255, 255]
-
-
-
-window = pygame.display.set_mode(window_size)
+window = pygame.display.set_mode(DISPLAY)
 clock = pygame.time.Clock()
 
+
+# ------------------------------
+
+block = pygame.image.load('red.png')
+
+# ------------------------------
+
+
 running = True
-
 while running:
-    
-    clock.tick(fps)
-    
-    for event in pygame.event.get():
-        
-        if event.type == pygame.QUIT:
+    # pause the game for a certain amount of time
+    clock.tick(FPS)
+
+    # handle events
+    for e in pygame.event.get():
+        if e.type == pygame.QUIT:
             running = False
-            
-    window.fill(color)
 
-    # draw random stuff here
-    pygame.draw.circle(window, (255, 0, 0), (100, 100), 50)
+        
+        elif e.type == pygame.KEYDOWN:
+            pass
+        elif e.type == pygame.KEYUP:
+            pass
     
+    # update the game
 
-    # update the display
+
+    # draw everything
+    window.fill(BACKGROUND)
+    window.blit(block, (100, 100))
+
+
+    # update the window
     pygame.display.update()
+
+# ------------------------------
+pygame.quit()
+
+
 
 
 
