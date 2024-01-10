@@ -52,6 +52,10 @@ while running:
     for e in pygame.event.get():
         if e.type == pygame.QUIT:
             running = False
+        elif e.type == pygame.KEYDOWN:
+            pass
+        elif e.type == pygame.KEYUP:
+            pass
 
     # draw everything
     window.fill(BACKGROUND)
