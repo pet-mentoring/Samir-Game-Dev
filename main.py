@@ -1,4 +1,5 @@
 import pygame
+import time
 
 # import the new classes
 
@@ -37,6 +38,13 @@ entity_handler.add_entity(
 )
 
 
+PLAYER = entity.Entity("player", [100, 100], 
+            [100, 100], pygame.image.load("red.png"))
+entity_handler.add_entity(PLAYER)
+
+
+
+
 # ------------------------------
 
 block = pygame.image.load("red.png")
@@ -44,10 +52,23 @@ block = pygame.image.load("red.png")
 # ------------------------------
 
 
+delta = 1
+current = 0
+previous = 0
+
+
+current = time.time()
+previous = time.time()
+
 running = True
 while running:
     # pause the game for a certain amount of time
     clock.tick(FPS)
+
+    # update the clock
+    current = time.time()
+    delta = current - previous
+    previous = current
 
     inputhandler.update_hardware()
     # handle events
@@ -78,6 +99,12 @@ while running:
 
     # update the game
     entity_handler.update()
+
+    print(delta)
+
+    # udpate stuff HERE
+    if inputhandler.is_key_pressed(pygame.K_d):
+        PLAYER.position[0] += 10
 
     # render the game
     entity_handler.render(window)
